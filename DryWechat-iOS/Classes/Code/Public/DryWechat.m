@@ -70,7 +70,7 @@ static NSString *const kAuthScope = @"snsapi_message,snsapi_userinfo,snsapi_frie
                   universalLink:(NSString *)universalLink {
     
     /// 检查数据
-    if (!appID) {
+    if (!appID || !universalLink) {
         return;
     }
 
@@ -358,6 +358,7 @@ static NSString *const kAuthScope = @"snsapi_message,snsapi_userinfo,snsapi_frie
     req.timeStamp= timeStamp;
     req.sign = sign;
     
+    
     /// 发起支付请求
     [WXApi sendReq:req completion:^(BOOL success) {}];
 }
@@ -409,13 +410,16 @@ static NSString *const kAuthScope = @"snsapi_message,snsapi_userinfo,snsapi_frie
     /// 更新Block
     [DryWechat shared].payCodeBlock = completion;
     
+    /// 转换时间戳
+    UInt32 stamp = [timeStamp intValue];
+    
     /// 创建支付请求
     PayReq *req = [[PayReq alloc] init];
     req.partnerId = partnerID;
     req.package = package;
     req.prepayId = prepayID;
     req.nonceStr = noncestr;
-    req.timeStamp= timeStamp;
+    req.timeStamp= stamp;
     req.sign = sign;
     
     /// 发起支付请求
