@@ -23,12 +23,6 @@ static NSString *const kAuthScope = @"snsapi_message,snsapi_userinfo,snsapi_frie
 @property (nonatomic, readwrite, copy, nullable) NSString *appID;
 /// 微信开放平台下发的账号密钥
 @property (nonatomic, readwrite, copy, nullable) NSString *secret;
-/// 商家向财付通申请的商家id
-@property (nonatomic, readwrite, copy, nullable) NSString *partnerID;
-/// 商家根据财付通文档填写的数据和签名
-@property (nonatomic, readwrite, copy, nullable) NSString *package;
-/// 商户密钥
-@property (nonatomic, readwrite, copy, nullable) NSString *partnerKey;
 /// 授权回调
 @property (nonatomic, readwrite, copy, nullable) BlockDryWechatAuth authBlock;
 /// 支付状态码回调
@@ -43,14 +37,14 @@ static NSString *const kAuthScope = @"snsapi_message,snsapi_userinfo,snsapi_frie
 @implementation DryWechat
 
 /// 单例
-+ (instancetype)sharedInstance {
++ (instancetype)shared {
     
-    static DryWechat *theInstance = nil;
+    static DryWechat *instance = nil;
     static dispatch_once_t oncePredicate;
     dispatch_once(&oncePredicate, ^{
-        theInstance = [[DryWechat alloc] init];
+        instance = [[DryWechat alloc] init];
     });
-    return theInstance;
+    return instance;
 }
 
 /// 构造
@@ -73,9 +67,7 @@ static NSString *const kAuthScope = @"snsapi_message,snsapi_userinfo,snsapi_frie
 /// 注册微信客户端
 + (void)registerClientWithAppID:(NSString *)appID
                          secret:(nullable NSString *)secret
-                      partnerID:(nullable NSString *)partnerID
-                     partnerKey:(nullable NSString *)partnerKey
-                        package:(nullable NSString *)package {
+                  universalLink:(NSString *)universalLink {
     
     /// 检查数据
     if (!appID) {
@@ -83,19 +75,21 @@ static NSString *const kAuthScope = @"snsapi_message,snsapi_userinfo,snsapi_frie
     }
 
     /// 注册
-    [DryWechat sharedInstance].isRegister = [WXApi registerApp:appID];
+    [DryWechat shared].isRegister = [WXApi registerApp:appID universalLink:universalLink];
     
     /// 保存数据
-    [DryWechat sharedInstance].appID = appID;
-    [DryWechat sharedInstance].secret = secret;
-    [DryWechat sharedInstance].partnerID = partnerID;
-    [DryWechat sharedInstance].package = package;
-    [DryWechat sharedInstance].partnerKey = partnerKey;
+    [DryWechat shared].appID = appID;
+    [DryWechat shared].secret = secret;
 }
 
 /// 处理微信通过URL启动App时传递的数据
 + (BOOL)handleOpenURL:(NSURL *)url {
-    return [WXApi handleOpenURL:url delegate:[DryWechat sharedInstance]];
+    return [WXApi handleOpenURL:url delegate:[DryWechat shared]];
+}
+
+/// 处理微信通过Universal Link启动App时传递的数据
++ (BOOL)handleOpenUniversalLink:(NSUserActivity *)userActivity {
+    return [WXApi handleOpenUniversalLink:userActivity delegate:[DryWechat shared]];
 }
 
 /// 微信客户端是否安装
@@ -118,13 +112,13 @@ static NSString *const kAuthScope = @"snsapi_message,snsapi_userinfo,snsapi_frie
     }
     
     /// 检查(客户端是否注册成功)
-    if (![DryWechat sharedInstance].isRegister) {
+    if (![DryWechat shared].isRegister) {
         completion(kDryWechatCodeNoRegister, nil, nil);
         return;
     }
     
     /// 检查(必要参数)
-    if (![DryWechat sharedInstance].appID || ![DryWechat sharedInstance].secret) {
+    if (![DryWechat shared].appID || ![DryWechat shared].secret) {
         completion(kDryWechatCodeParamsErr, nil, nil);
         return;
     }
@@ -142,14 +136,14 @@ static NSString *const kAuthScope = @"snsapi_message,snsapi_userinfo,snsapi_frie
     }
     
     /// 更新Block
-    [DryWechat sharedInstance].authBlock = completion;
+    [DryWechat shared].authBlock = completion;
     
     /// 发送Auth请求到微信
     SendAuthReq *authReq = [[SendAuthReq alloc] init];
     authReq.scope = kAuthScope;
     authReq.state = [[NSBundle mainBundle] bundleIdentifier];
-    authReq.openID = [DryWechat sharedInstance].appID;
-    [WXApi sendAuthReq:authReq viewController:vc delegate:[DryWechat sharedInstance]];
+    authReq.openID = [DryWechat shared].appID;
+    [WXApi sendAuthReq:authReq viewController:vc delegate:[DryWechat shared] completion:^(BOOL success) {}];
 }
 
 /// 获取微信的用户信息(昵称、头像地址)
@@ -163,7 +157,7 @@ static NSString *const kAuthScope = @"snsapi_message,snsapi_userinfo,snsapi_frie
     }
     
     /// 检查(客户端是否注册成功)
-    if (![DryWechat sharedInstance].isRegister) {
+    if (![DryWechat shared].isRegister) {
         completion(kDryWechatCodeNoRegister, nil, nil);
         return;
     }
@@ -289,9 +283,12 @@ static NSString *const kAuthScope = @"snsapi_message,snsapi_userinfo,snsapi_frie
     return result;
 }
 
-/// 支付(调起微信客户端支付，不支持网页)
+/// 支付(本地生成签名)
 + (void)payWithPrepayID:(NSString *)prepayID
                noncestr:(NSString *)noncestr
+              partnerID:(NSString *)partnerID
+                package:(NSString *)package
+             partnerKey:(NSString *)partnerKey
              completion:(BlockDryWechatCode)completion {
     
     /// 检查数据
@@ -300,16 +297,13 @@ static NSString *const kAuthScope = @"snsapi_message,snsapi_userinfo,snsapi_frie
     }
     
     /// 检查(客户端是否注册成功)
-    if (![DryWechat sharedInstance].isRegister) {
+    if (![DryWechat shared].isRegister) {
         completion(kDryWechatCodeNoRegister);
         return;
     }
     
     /// 检查(必要参数)
-    if (![DryWechat sharedInstance].appID
-        || ![DryWechat sharedInstance].partnerID
-        || ![DryWechat sharedInstance].package
-        || ![DryWechat sharedInstance].partnerKey) {
+    if (![DryWechat shared].appID) {
         completion(kDryWechatCodeParamsErr);
         return;
     }
@@ -327,13 +321,13 @@ static NSString *const kAuthScope = @"snsapi_message,snsapi_userinfo,snsapi_frie
     }
     
     /// 检查(支付参数)
-    if (!prepayID || !noncestr) {
+    if (!prepayID || !noncestr || !partnerID || !package || !partnerKey) {
         completion(kDryWechatCodeParamsErr);
         return;
     }
     
     /// 更新Block
-    [DryWechat sharedInstance].payCodeBlock = completion;
+    [DryWechat shared].payCodeBlock = completion;
     
     /// 时间戳
     NSDate *date = [NSDate date];
@@ -341,10 +335,10 @@ static NSString *const kAuthScope = @"snsapi_message,snsapi_userinfo,snsapi_frie
     UInt32 timeStamp = [timeSp intValue];
     
     /// 签名
-    NSString *sign = [DryWechat signWithAppID:[DryWechat sharedInstance].appID
-                                    partnerID:[DryWechat sharedInstance].partnerID
-                                   partnerKey:[DryWechat sharedInstance].partnerKey
-                                      package:[DryWechat sharedInstance].package
+    NSString *sign = [DryWechat signWithAppID:[DryWechat shared].appID
+                                    partnerID:partnerID
+                                   partnerKey:partnerKey
+                                      package:package
                                      prepayID:prepayID
                                      noncestr:noncestr
                                     timestamp:timeStamp];
@@ -357,15 +351,75 @@ static NSString *const kAuthScope = @"snsapi_message,snsapi_userinfo,snsapi_frie
     
     /// 创建支付请求
     PayReq *req = [[PayReq alloc] init];
-    req.partnerId = [DryWechat sharedInstance].partnerID;
-    req.package = [DryWechat sharedInstance].package;
+    req.partnerId = partnerID;
+    req.package = package;
     req.prepayId = prepayID;
     req.nonceStr = noncestr;
     req.timeStamp= timeStamp;
     req.sign = sign;
     
     /// 发起支付请求
-    [WXApi sendReq:req];
+    [WXApi sendReq:req completion:^(BOOL success) {}];
+}
+
+/// 支付(服务端生成签名)
++ (void)payWithPrepayID:(NSString *)prepayID
+               noncestr:(NSString *)noncestr
+              partnerID:(NSString *)partnerID
+                package:(NSString *)package
+              timeStamp:(NSString *)timeStamp
+                   sign:(NSString *)sign
+             completion:(BlockDryWechatCode)completion {
+    
+    /// 检查数据
+    if (!completion) {
+        return;
+    }
+    
+    /// 检查(客户端是否注册成功)
+    if (![DryWechat shared].isRegister) {
+        completion(kDryWechatCodeNoRegister);
+        return;
+    }
+    
+    /// 检查(必要参数)
+    if (![DryWechat shared].appID) {
+        completion(kDryWechatCodeParamsErr);
+        return;
+    }
+    
+    /// 检查(客户端是否安装)
+    if (![DryWechat isWXAppInstalled]) {
+        completion(kDryWechatCodeNotInstall);
+        return;
+    }
+    
+    /// 检查(客户端是否支持)
+    if (![DryWechat isWXAppSupportApi]) {
+        completion(kDryWechatCodeUnsupport);
+        return;
+    }
+    
+    /// 检查(支付参数)
+    if (!prepayID || !noncestr || !partnerID || !package || !timeStamp || !sign) {
+        completion(kDryWechatCodeParamsErr);
+        return;
+    }
+    
+    /// 更新Block
+    [DryWechat shared].payCodeBlock = completion;
+    
+    /// 创建支付请求
+    PayReq *req = [[PayReq alloc] init];
+    req.partnerId = partnerID;
+    req.package = package;
+    req.prepayId = prepayID;
+    req.nonceStr = noncestr;
+    req.timeStamp= timeStamp;
+    req.sign = sign;
+    
+    /// 发起支付请求
+    [WXApi sendReq:req completion:^(BOOL success) {}];
 }
 
 #pragma mark - 分享
@@ -380,7 +434,7 @@ static NSString *const kAuthScope = @"snsapi_message,snsapi_userinfo,snsapi_frie
     }
     
     /// 检查(客户端是否注册成功)
-    if (![DryWechat sharedInstance].isRegister) {
+    if (![DryWechat shared].isRegister) {
         completion(kDryWechatCodeNoRegister);
         return;
     }
@@ -404,9 +458,9 @@ static NSString *const kAuthScope = @"snsapi_message,snsapi_userinfo,snsapi_frie
     }
     
     /// 更新Block
-    [DryWechat sharedInstance].shareCodeBlock = completion;
+    [DryWechat shared].shareCodeBlock = completion;
     
-    /// 分享文本信息 */
+    /// 分享文本信息
     SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];
     req.bText = YES;
     req.text = text;
@@ -417,7 +471,7 @@ static NSString *const kAuthScope = @"snsapi_message,snsapi_userinfo,snsapi_frie
     }else {
         req.scene = WXSceneFavorite;
     }
-    [WXApi sendReq:req];
+    [WXApi sendReq:req completion:^(BOOL success) {}];
 }
 
 /// 分享多媒体信息
@@ -435,7 +489,7 @@ static NSString *const kAuthScope = @"snsapi_message,snsapi_userinfo,snsapi_frie
     }
     
     /// 检查(客户端是否注册成功)
-    if (![DryWechat sharedInstance].isRegister) {
+    if (![DryWechat shared].isRegister) {
         completion(kDryWechatCodeNoRegister);
         return;
     }
@@ -459,7 +513,7 @@ static NSString *const kAuthScope = @"snsapi_message,snsapi_userinfo,snsapi_frie
     }
     
     /// 更新Block
-    [DryWechat sharedInstance].shareCodeBlock = completion;
+    [DryWechat shared].shareCodeBlock = completion;
     
     /// 创建分享请求 */
     SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];
@@ -597,7 +651,7 @@ static NSString *const kAuthScope = @"snsapi_message,snsapi_userinfo,snsapi_frie
     req.message = targetMessage;
     
     /// 分享多媒体信息
-    [WXApi sendReq:req];
+    [WXApi sendReq:req completion:^(BOOL success) {}];
 }
 
 #pragma mark - 打开微信小程序
@@ -612,7 +666,7 @@ static NSString *const kAuthScope = @"snsapi_message,snsapi_userinfo,snsapi_frie
     }
     
     /// 检查(客户端是否注册成功)
-    if (![DryWechat sharedInstance].isRegister) {
+    if (![DryWechat shared].isRegister) {
         completion(kDryWechatCodeNoRegister, nil);
         return;
     }
@@ -636,7 +690,7 @@ static NSString *const kAuthScope = @"snsapi_message,snsapi_userinfo,snsapi_frie
     }
     
     /// 更新Block
-    [DryWechat sharedInstance].openProgramBlock = completion;
+    [DryWechat shared].openProgramBlock = completion;
     
     /// 创建请求
     WXLaunchMiniProgramReq *launchMiniProgramReq = [WXLaunchMiniProgramReq object];
@@ -655,7 +709,7 @@ static NSString *const kAuthScope = @"snsapi_message,snsapi_userinfo,snsapi_frie
     }
     
     /// 打开小程序
-    [WXApi sendReq:launchMiniProgramReq];
+    [WXApi sendReq:launchMiniProgramReq completion:^(BOOL success) {}];
 }
 
 #pragma mark - 微信回调(WXApiDelegate)
@@ -696,13 +750,13 @@ static NSString *const kAuthScope = @"snsapi_message,snsapi_userinfo,snsapi_frie
     }
     
     /// 检查(数据)
-    if (![DryWechat sharedInstance].authBlock) {
+    if (![DryWechat shared].authBlock) {
         return;
     }
     
     /// 检查(数据)
-    if (![DryWechat sharedInstance].appID || ![DryWechat sharedInstance].secret) {
-        [DryWechat sharedInstance].authBlock(kDryWechatCodeParamsErr, nil, nil);
+    if (![DryWechat shared].appID || ![DryWechat shared].secret) {
+        [DryWechat shared].authBlock(kDryWechatCodeParamsErr, nil, nil);
         return;
     }
     
@@ -714,8 +768,8 @@ static NSString *const kAuthScope = @"snsapi_message,snsapi_userinfo,snsapi_frie
         NSString *host = @"https://api.weixin.qq.com/sns/oauth2/access_token";
         NSString *code = resp.code;
         NSString *type = @"authorization_code";
-        NSString *appID = [DryWechat sharedInstance].appID;
-        NSString *secret = [DryWechat sharedInstance].secret;
+        NSString *appID = [DryWechat shared].appID;
+        NSString *secret = [DryWechat shared].secret;
         NSString *url = [NSString stringWithFormat:@"%@?appid=%@&secret=%@&code=%@&grant_type=%@", host, appID, secret, code, type];
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
         NSURLSession *session = [NSURLSession sharedSession];
@@ -723,7 +777,7 @@ static NSString *const kAuthScope = @"snsapi_message,snsapi_userinfo,snsapi_frie
             
             /// 获取数据失败
             if (!data || error) {
-                [DryWechat sharedInstance].authBlock(kDryWechatCodeUnknown, nil, nil);
+                [DryWechat shared].authBlock(kDryWechatCodeUnknown, nil, nil);
                 return ;
             }
             
@@ -732,7 +786,7 @@ static NSString *const kAuthScope = @"snsapi_message,snsapi_userinfo,snsapi_frie
             
             /// 原始数据检查
             if (!jsonObect || ![jsonObect isKindOfClass:[NSDictionary class]]) {
-                [DryWechat sharedInstance].authBlock(kDryWechatCodeUnknown, nil, nil);
+                [DryWechat shared].authBlock(kDryWechatCodeUnknown, nil, nil);
                 return;
             }
             
@@ -752,10 +806,10 @@ static NSString *const kAuthScope = @"snsapi_message,snsapi_userinfo,snsapi_frie
             }
             
             /// 回调
-            [DryWechat sharedInstance].authBlock(kDryWechatCodeSuccess, openID, accessToken);
+            [DryWechat shared].authBlock(kDryWechatCodeSuccess, openID, accessToken);
             
             /// 清理Block
-            [DryWechat sharedInstance].authBlock = nil;
+            [DryWechat shared].authBlock = nil;
         }];
         
         [task resume];
@@ -765,24 +819,24 @@ static NSString *const kAuthScope = @"snsapi_message,snsapi_userinfo,snsapi_frie
         /// 授权失败
         switch (statusCode) {
             case WXErrCodeSentFail:{
-                [DryWechat sharedInstance].authBlock(kDryWechatCodeSendFail, nil, nil);
+                [DryWechat shared].authBlock(kDryWechatCodeSendFail, nil, nil);
             }break;
             case WXErrCodeAuthDeny:{
-                [DryWechat sharedInstance].authBlock(kDryWechatCodeAuthDeny, nil, nil);
+                [DryWechat shared].authBlock(kDryWechatCodeAuthDeny, nil, nil);
             }break;
             case WXErrCodeUnsupport:{
-                [DryWechat sharedInstance].authBlock(kDryWechatCodeUnsupport, nil, nil);
+                [DryWechat shared].authBlock(kDryWechatCodeUnsupport, nil, nil);
             }break;
             case WXErrCodeUserCancel:{
-                [DryWechat sharedInstance].authBlock(kDryWechatCodeUserCancel, nil, nil);
+                [DryWechat shared].authBlock(kDryWechatCodeUserCancel, nil, nil);
             }break;
             default:{
-                [DryWechat sharedInstance].authBlock(kDryWechatCodeUnknown, nil, nil);
+                [DryWechat shared].authBlock(kDryWechatCodeUnknown, nil, nil);
             }break;
         }
         
         /// 清理Block
-        [DryWechat sharedInstance].authBlock = nil;
+        [DryWechat shared].authBlock = nil;
     }
 }
 
@@ -795,7 +849,7 @@ static NSString *const kAuthScope = @"snsapi_message,snsapi_userinfo,snsapi_frie
     }
     
     /// 检查(数据)
-    if (![DryWechat sharedInstance].payCodeBlock) {
+    if (![DryWechat shared].payCodeBlock) {
         return;
     }
     
@@ -803,27 +857,27 @@ static NSString *const kAuthScope = @"snsapi_message,snsapi_userinfo,snsapi_frie
     NSInteger statusCode = resp.errCode;
     switch (statusCode) {
         case WXSuccess:{
-            [DryWechat sharedInstance].payCodeBlock(kDryWechatCodeSuccess);
+            [DryWechat shared].payCodeBlock(kDryWechatCodeSuccess);
         }break;
         case WXErrCodeSentFail:{
-            [DryWechat sharedInstance].payCodeBlock(kDryWechatCodeSendFail);
+            [DryWechat shared].payCodeBlock(kDryWechatCodeSendFail);
         }break;
         case WXErrCodeAuthDeny:{
-            [DryWechat sharedInstance].payCodeBlock(kDryWechatCodeAuthDeny);
+            [DryWechat shared].payCodeBlock(kDryWechatCodeAuthDeny);
         }break;
         case WXErrCodeUnsupport:{
-            [DryWechat sharedInstance].payCodeBlock(kDryWechatCodeUnsupport);
+            [DryWechat shared].payCodeBlock(kDryWechatCodeUnsupport);
         }break;
         case WXErrCodeUserCancel:{
-            [DryWechat sharedInstance].payCodeBlock(kDryWechatCodeUserCancel);
+            [DryWechat shared].payCodeBlock(kDryWechatCodeUserCancel);
         }break;
         default:{
-            [DryWechat sharedInstance].payCodeBlock(kDryWechatCodeUnknown);
+            [DryWechat shared].payCodeBlock(kDryWechatCodeUnknown);
         }break;
     }
     
     /// 清理Blcok
-    [DryWechat sharedInstance].payCodeBlock = nil;
+    [DryWechat shared].payCodeBlock = nil;
 }
 
 /// 分享回调处理
@@ -835,7 +889,7 @@ static NSString *const kAuthScope = @"snsapi_message,snsapi_userinfo,snsapi_frie
     }
     
     /// 检查(数据)
-    if (![DryWechat sharedInstance].shareCodeBlock) {
+    if (![DryWechat shared].shareCodeBlock) {
         return;
     }
     
@@ -843,27 +897,27 @@ static NSString *const kAuthScope = @"snsapi_message,snsapi_userinfo,snsapi_frie
     NSInteger statusCode = resp.errCode;
     switch (statusCode) {
         case WXSuccess:{
-            [DryWechat sharedInstance].shareCodeBlock(kDryWechatCodeSuccess);
+            [DryWechat shared].shareCodeBlock(kDryWechatCodeSuccess);
         }break;
         case WXErrCodeSentFail:{
-            [DryWechat sharedInstance].shareCodeBlock(kDryWechatCodeSendFail);
+            [DryWechat shared].shareCodeBlock(kDryWechatCodeSendFail);
         }break;
         case WXErrCodeAuthDeny:{
-            [DryWechat sharedInstance].shareCodeBlock(kDryWechatCodeAuthDeny);
+            [DryWechat shared].shareCodeBlock(kDryWechatCodeAuthDeny);
         }break;
         case WXErrCodeUnsupport:{
-            [DryWechat sharedInstance].shareCodeBlock(kDryWechatCodeUnsupport);
+            [DryWechat shared].shareCodeBlock(kDryWechatCodeUnsupport);
         }break;
         case WXErrCodeUserCancel:{
-            [DryWechat sharedInstance].shareCodeBlock(kDryWechatCodeUserCancel);
+            [DryWechat shared].shareCodeBlock(kDryWechatCodeUserCancel);
         }break;
         default:{
-            [DryWechat sharedInstance].shareCodeBlock(kDryWechatCodeUnknown);
+            [DryWechat shared].shareCodeBlock(kDryWechatCodeUnknown);
         }break;
     }
     
     /// 清理Block
-    [DryWechat sharedInstance].shareCodeBlock = nil;
+    [DryWechat shared].shareCodeBlock = nil;
 }
 
 /// 打开微信小程序回调处理
@@ -875,17 +929,17 @@ static NSString *const kAuthScope = @"snsapi_message,snsapi_userinfo,snsapi_frie
     }
     
     /// 检查(数据)
-    if (![DryWechat sharedInstance].openProgramBlock) {
+    if (![DryWechat shared].openProgramBlock) {
         return;
     }
     
     /// 小程序回调
     NSInteger statusCode = resp.errCode;
     NSString *msg = resp.extMsg;
-    [DryWechat sharedInstance].openProgramBlock(statusCode, msg);
+    [DryWechat shared].openProgramBlock(statusCode, msg);
     
     /// 清理Block
-    [DryWechat sharedInstance].openProgramBlock = nil;
+    [DryWechat shared].openProgramBlock = nil;
 }
 
 @end

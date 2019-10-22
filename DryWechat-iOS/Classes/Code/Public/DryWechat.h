@@ -67,22 +67,23 @@ typedef void (^BlockDryWechatProgram) (DryWechatCode code, NSString *_Nullable m
 @interface DryWechat : NSObject
 
 /// @说明 注册微信客户端
-/// @参数 appID:  微信开放平台下发的账号(注册、分享、授权、获取用户信息、支付)
-/// @参数 secret: 微信开放平台下发的账号密钥(授权、获取用户信息)
-/// @参数 partnerID:  商家向财付通申请的商家id(支付)
-/// @参数 partnerKey: 商户密钥(支付)
-/// @参数 package:    商家根据财付通文档填写的数据和签名(支付)
+/// @参数 appID:          微信开放平台下发的账号(注册、分享、授权、获取用户信息、支付)
+/// @参数 secret:         微信开放平台下发的账号密钥(授权、获取用户信息)
+/// @参数 universalLink:  微信开发者Universal Link
 /// @返回 void
 + (void)registerClientWithAppID:(NSString *)appID
                          secret:(nullable NSString *)secret
-                      partnerID:(nullable NSString *)partnerID
-                     partnerKey:(nullable NSString *)partnerKey
-                        package:(nullable NSString *)package;
+                  universalLink:(NSString *)universalLink;
 
 /// @说明 处理微信通过URL启动App时传递的数据
-/// @注释 在application:openURL:options:中调用
+/// @注释 在 application:openURL:options: 中调用
 /// @返回 BOOL
 + (BOOL)handleOpenURL:(NSURL *)url;
+
+/// @说明 处理微信通过Universal Link启动App时传递的数据
+/// @注释 在 application:continueUserActivity:restorationHandler: 中调用
+/// @返回 BOOL
++ (BOOL)handleOpenUniversalLink:(NSUserActivity *)userActivity;
 
 /// @说明 微信客户端是否安装
 /// @返回 BOOL
@@ -109,14 +110,38 @@ typedef void (^BlockDryWechatProgram) (DryWechatCode code, NSString *_Nullable m
                accessToken:(NSString *)accessToken
                 completion:(BlockDryWechatUserInfo)completion;
 
-/// @说明 支付(调起微信客户端支付，不支持网页)
+/// @说明 支付(本地生成签名)
 /// @注释 必须保证在主线程中调用
-/// @参数 prepayid:   预支付订单号(服务端下发)
-/// @参数 noncestr:   随机串(服务端下发)
+/// @参数 prepayid:   预支付订单号
+/// @参数 noncestr:   随机串
+/// @参数 partnerID:  商家向财付通申请的商家id
+/// @参数 package:    商家根据财付通文档填写的数据和签名
+/// @参数 partnerKey: 商户密钥
 /// @参数 completion: 状态码回调
 /// @返回 void
 + (void)payWithPrepayID:(NSString *)prepayID
                noncestr:(NSString *)noncestr
+              partnerID:(NSString *)partnerID
+                package:(NSString *)package
+             partnerKey:(NSString *)partnerKey
+             completion:(BlockDryWechatCode)completion;
+
+/// @说明 支付(服务端生成签名)
+/// @注释 必须保证在主线程中调用
+/// @参数 prepayid:   预支付订单号
+/// @参数 noncestr:   随机串
+/// @参数 partnerID:  商家向财付通申请的商家id
+/// @参数 package:    商家根据财付通文档填写的数据和签名
+/// @参数 timeStamp:  时间戳
+/// @参数 sign:       签名
+/// @参数 completion: 状态码回调
+/// @返回 void
++ (void)payWithPrepayID:(NSString *)prepayID
+               noncestr:(NSString *)noncestr
+              partnerID:(NSString *)partnerID
+                package:(NSString *)package
+              timeStamp:(NSString *)timeStamp
+                   sign:(NSString *)sign
              completion:(BlockDryWechatCode)completion;
 
 /// @说明 分享文本信息

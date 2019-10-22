@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   
   # Git
   s.name        = 'DryWechat-iOS'
-  s.version     = '0.0.1'
+  s.version     = '0.0.2'
   s.summary     = 'DryWechat-iOS'
   s.homepage    = 'https://github.com/duanruiying/DryWechat-iOS'
   s.license     = { :type => 'MIT', :file => 'LICENSE' }
