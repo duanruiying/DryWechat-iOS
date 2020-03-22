@@ -199,7 +199,7 @@
 				ORGANIZATIONNAME = Dry;
 				TargetAttributes = {
 					6003F589195388D20070C39A = {
-						DevelopmentTeam = 8PWWH32WMP;
+						DevelopmentTeam = XLE6PLCUL5;
 					};
 				};
 			};
@@ -408,7 +408,7 @@
 			baseConfigurationReference = D2518AEE3D916B9662C00D33 /* Pods-DryWechat-iOS_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8PWWH32WMP;
+				DEVELOPMENT_TEAM = XLE6PLCUL5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DryWechat-iOS/DryWechat-iOS-Prefix.pch";
 				INFOPLIST_FILE = "DryWechat-iOS/DryWechat-iOS-Info.plist";
@@ -425,7 +425,7 @@
 			baseConfigurationReference = 98DDC7969060CADE73380528 /* Pods-DryWechat-iOS_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8PWWH32WMP;
+				DEVELOPMENT_TEAM = XLE6PLCUL5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DryWechat-iOS/DryWechat-iOS-Prefix.pch";
 				INFOPLIST_FILE = "DryWechat-iOS/DryWechat-iOS-Info.plist";
