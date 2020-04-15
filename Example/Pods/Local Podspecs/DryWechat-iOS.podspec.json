@@ -1,6 +1,6 @@
 {
   "name": "DryWechat-iOS",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "summary": "DryWechat-iOS",
   "homepage": "https://github.com/duanruiying/DryWechat-iOS",
   "license": {
@@ -12,7 +12,7 @@
   },
   "source": {
     "git": "https://github.com/duanruiying/DryWechat-iOS.git",
-    "tag": "0.0.3"
+    "tag": "1.0.0"
   },
   "description": "TODO: iOS微信功能简化(登录、支付、分享、打开小程序).",
   "platforms": {

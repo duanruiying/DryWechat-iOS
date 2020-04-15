@@ -19,16 +19,16 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		14EEC48D3C667FFFAD6CA0B169AC58AF /* DryWechatMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECB52000E40099FEF5421A6813991BF /* DryWechatMedia.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		19C6E2FA996DA4D8B24DD8B7A85CCB6B /* DryWechat.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C666A4278CBDB550F5FC07350F8E7E6 /* DryWechat.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		2149A5E211D06E8AF4C19A070728092E /* DryWechatMedia.h in Headers */ = {isa = PBXBuildFile; fileRef = A176C3B26CEECCB632250C8193489AD3 /* DryWechatMedia.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		14EEC48D3C667FFFAD6CA0B169AC58AF /* DryWechatMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECFF2542B096852A5AE020985B4BE39 /* DryWechatMedia.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		19C6E2FA996DA4D8B24DD8B7A85CCB6B /* DryWechat.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CAA1090603385005989632BF04216BC /* DryWechat.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		2149A5E211D06E8AF4C19A070728092E /* DryWechatMedia.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FDD46C925EBF2C9DD763207EE0ECD58 /* DryWechatMedia.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2592C44FADC5C59FC0A05C3DB96F1904 /* Pods-DryWechat-iOS_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C05219BC92C4BA4A2FB12F16343B6210 /* Pods-DryWechat-iOS_Example-dummy.m */; };
 		2DF0F73E228141F08A7880549B9C8482 /* Pods-DryWechat-iOS_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7DEF9280BEB663C77E32BFF5B4D62B12 /* Pods-DryWechat-iOS_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2E8506023164A24C8309599AFAE64313 /* DryWechat.h in Headers */ = {isa = PBXBuildFile; fileRef = E4E356945A4E963CF2E02CFA65D2F2B8 /* DryWechat.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2E8506023164A24C8309599AFAE64313 /* DryWechat.h in Headers */ = {isa = PBXBuildFile; fileRef = E9774BF27B00799152741C07EA85CB59 /* DryWechat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		40444A2D6199808D5FCB6853F59E5E64 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
 		A10F8F8FE5E61580B7A613FABB3BE9A9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
-		C3B35FC0FC9C610BF85F4EFA08EBB9EC /* DryWechat-iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E1F4D0E6BCFCB365E70B081135C13B1F /* DryWechat-iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F0C312BEF2C9A9726A2F562AD6878B74 /* DryWechat-iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 792EDE8C9971436E7DBB8EE7DD0995D4 /* DryWechat-iOS-dummy.m */; };
+		C3B35FC0FC9C610BF85F4EFA08EBB9EC /* DryWechat-iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F925B1B82202DD152E22EE444EC08835 /* DryWechat-iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F0C312BEF2C9A9726A2F562AD6878B74 /* DryWechat-iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 64DAA5397E7EA83E3C85F55DCB771ED4 /* DryWechat-iOS-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,36 +56,38 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		08F4B94DEFCCF5323155166A41E016D2 /* WXApiObject.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = WXApiObject.h; path = OpenSDK1.8.6.2/WXApiObject.h; sourceTree = "<group>"; };
-		0A6B79438D5B7312D08F5E0CB8D41B8C /* WechatAuthSDK.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = WechatAuthSDK.h; path = OpenSDK1.8.6.2/WechatAuthSDK.h; sourceTree = "<group>"; };
+		19A9A0DFB16AFE7DDE7311D28383E43F /* DryWechat-iOS.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = "DryWechat-iOS.podspec"; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		1AD5D6108700BA65E865C0532E4DDD04 /* Pods-DryWechat-iOS_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-DryWechat-iOS_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		20C276B89EB49C2EEE542C6023939DCE /* libWeChatSDK.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libWeChatSDK.a; path = OpenSDK1.8.6.2/libWeChatSDK.a; sourceTree = "<group>"; };
-		29C3AF4E69AC2ED81EF4361B4283C0BE /* DryWechat-iOS-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DryWechat-iOS-prefix.pch"; sourceTree = "<group>"; };
+		1C8A77C01DC1E8EF823145D76D89D7BE /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		1D075B6C89631B71325F90C9AFF90CC7 /* WechatOpenSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = WechatOpenSDK.release.xcconfig; sourceTree = "<group>"; };
+		205625BE2B46F00E8311F2436A85864F /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		25F606B178353EBAD42D66F75DAE29FA /* DryWechat-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "DryWechat-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		3220B55459886A97342DE0AFE6F15022 /* WechatOpenSDK.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = WechatOpenSDK.xcconfig; sourceTree = "<group>"; };
+		37075775D547B874786834FF0A1FF2C0 /* WechatOpenSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = WechatOpenSDK.debug.xcconfig; sourceTree = "<group>"; };
 		3BCBD93B0E76FB4AE89FEAFE6883D6A8 /* DryWechat_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = DryWechat_iOS.framework; path = "DryWechat-iOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E15DD1624721C6A2888E02B9A47C5E3 /* Pods_DryWechat_iOS_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_DryWechat_iOS_Example.framework; path = "Pods-DryWechat-iOS_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		49FC8620118CBE09DF4A47F2880203E1 /* WXApi.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = WXApi.h; path = OpenSDK1.8.6.2/WXApi.h; sourceTree = "<group>"; };
 		54BB9F19E6D74348C8EF60687AFF871C /* Pods-DryWechat-iOS_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DryWechat-iOS_Example-Info.plist"; sourceTree = "<group>"; };
+		55D5CDF541E1D6589B54A9C3F985731F /* libWeChatSDK.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libWeChatSDK.a; path = OpenSDK1.8.7/libWeChatSDK.a; sourceTree = "<group>"; };
 		562619BC727865512FD9B5E2AAABC564 /* Pods-DryWechat-iOS_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DryWechat-iOS_Example.release.xcconfig"; sourceTree = "<group>"; };
-		565DE38E5AE25CC1BA4460851B0EEAE4 /* DryWechat-iOS.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "DryWechat-iOS.xcconfig"; sourceTree = "<group>"; };
-		5ECB52000E40099FEF5421A6813991BF /* DryWechatMedia.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DryWechatMedia.m; path = "DryWechat-iOS/Classes/Code/Public/DryWechatMedia.m"; sourceTree = "<group>"; };
-		792EDE8C9971436E7DBB8EE7DD0995D4 /* DryWechat-iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DryWechat-iOS-dummy.m"; sourceTree = "<group>"; };
+		5A1AA5C567A5CA375E87E2477C8E43B7 /* WXApi.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = WXApi.h; path = OpenSDK1.8.7/WXApi.h; sourceTree = "<group>"; };
+		64DAA5397E7EA83E3C85F55DCB771ED4 /* DryWechat-iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DryWechat-iOS-dummy.m"; sourceTree = "<group>"; };
+		6A2C230EFF0F523CC4E31F91DB67959E /* WXApiObject.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = WXApiObject.h; path = OpenSDK1.8.7/WXApiObject.h; sourceTree = "<group>"; };
+		6CAA1090603385005989632BF04216BC /* DryWechat.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DryWechat.m; path = "DryWechat-iOS/Classes/Code/Public/DryWechat.m"; sourceTree = "<group>"; };
+		6ECFF2542B096852A5AE020985B4BE39 /* DryWechatMedia.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DryWechatMedia.m; path = "DryWechat-iOS/Classes/Code/Public/DryWechatMedia.m"; sourceTree = "<group>"; };
 		7DEF9280BEB663C77E32BFF5B4D62B12 /* Pods-DryWechat-iOS_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-DryWechat-iOS_Example-umbrella.h"; sourceTree = "<group>"; };
-		84B53D31CFEF20B7DF178DA12113FFE2 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
-		881D4B538A09BD841666B75DA4961EBF /* DryWechat-iOS-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "DryWechat-iOS-Info.plist"; sourceTree = "<group>"; };
-		8B1870AB22DE3F30820C110EB39187D2 /* DryWechat-iOS.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = "DryWechat-iOS.podspec"; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		8C666A4278CBDB550F5FC07350F8E7E6 /* DryWechat.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DryWechat.m; path = "DryWechat-iOS/Classes/Code/Public/DryWechat.m"; sourceTree = "<group>"; };
+		86678EB0516B5C8DCAEC408836D8A7C6 /* DryWechat-iOS-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DryWechat-iOS-prefix.pch"; sourceTree = "<group>"; };
+		98DBD198451196F6AA402E543539EA26 /* WechatAuthSDK.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = WechatAuthSDK.h; path = OpenSDK1.8.7/WechatAuthSDK.h; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A176C3B26CEECCB632250C8193489AD3 /* DryWechatMedia.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DryWechatMedia.h; path = "DryWechat-iOS/Classes/Code/Public/DryWechatMedia.h"; sourceTree = "<group>"; };
+		9FDD46C925EBF2C9DD763207EE0ECD58 /* DryWechatMedia.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DryWechatMedia.h; path = "DryWechat-iOS/Classes/Code/Public/DryWechatMedia.h"; sourceTree = "<group>"; };
 		A3CEC1DEE4867023D9F564F42127CA80 /* Pods-DryWechat-iOS_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DryWechat-iOS_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		AC6424C0825B77F29D52B033009A441E /* DryWechat-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "DryWechat-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		C05219BC92C4BA4A2FB12F16343B6210 /* Pods-DryWechat-iOS_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-DryWechat-iOS_Example-dummy.m"; sourceTree = "<group>"; };
 		CF7E6446DCF0427CA309C2F3ADBACEEB /* Pods-DryWechat-iOS_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DryWechat-iOS_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		E1F4D0E6BCFCB365E70B081135C13B1F /* DryWechat-iOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DryWechat-iOS-umbrella.h"; sourceTree = "<group>"; };
-		E4BE35BF428243E43A1CEC06817CDE5F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
-		E4E356945A4E963CF2E02CFA65D2F2B8 /* DryWechat.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DryWechat.h; path = "DryWechat-iOS/Classes/Code/Public/DryWechat.h"; sourceTree = "<group>"; };
 		E848159AE806A7199D5EB09A731A6C2C /* Pods-DryWechat-iOS_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-DryWechat-iOS_Example.modulemap"; sourceTree = "<group>"; };
-		FD7A94E6A39242B474E59AAE130EA86C /* DryWechat-iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "DryWechat-iOS.modulemap"; sourceTree = "<group>"; };
+		E9774BF27B00799152741C07EA85CB59 /* DryWechat.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DryWechat.h; path = "DryWechat-iOS/Classes/Code/Public/DryWechat.h"; sourceTree = "<group>"; };
+		F1165707FBD41A543EA1FD06FE0A961F /* DryWechat-iOS-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "DryWechat-iOS-Info.plist"; sourceTree = "<group>"; };
+		F925B1B82202DD152E22EE444EC08835 /* DryWechat-iOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DryWechat-iOS-umbrella.h"; sourceTree = "<group>"; };
+		FC221400EA043AAF9BA2E632BE8ECC7B /* DryWechat-iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "DryWechat-iOS.modulemap"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0539B7872B896A554507CA58281C01E5 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				19A9A0DFB16AFE7DDE7311D28383E43F /* DryWechat-iOS.podspec */,
+				1C8A77C01DC1E8EF823145D76D89D7BE /* LICENSE */,
+				205625BE2B46F00E8311F2436A85864F /* README.md */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		0A8469D67E0C967B62655C9EEE8DBE8A /* DryWechat-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				E9774BF27B00799152741C07EA85CB59 /* DryWechat.h */,
+				6CAA1090603385005989632BF04216BC /* DryWechat.m */,
+				9FDD46C925EBF2C9DD763207EE0ECD58 /* DryWechatMedia.h */,
+				6ECFF2542B096852A5AE020985B4BE39 /* DryWechatMedia.m */,
+				0539B7872B896A554507CA58281C01E5 /* Pod */,
+				B5248F0BB4C28E28C46E14E690973E77 /* Support Files */,
+			);
+			name = "DryWechat-iOS";
+			path = ../..;
+			sourceTree = "<group>";
+		};
 		254B3F97EA5917F3B87D79C53A41418A /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -119,33 +145,19 @@
 		2A001A7BB14DE5986F4B76FB64BB0B77 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				7789E51791BE5B31FC69536F0F9B9CD7 /* DryWechat-iOS */,
+				0A8469D67E0C967B62655C9EEE8DBE8A /* DryWechat-iOS */,
 			);
 			name = "Development Pods";
 			sourceTree = "<group>";
 		};
-		300FD981AC6E8BFDC7AF9905A13C392A /* Support Files */ = {
+		4100A123B7DED17A6C7B92332926C547 /* WechatOpenSDK */ = {
 			isa = PBXGroup;
 			children = (
-				FD7A94E6A39242B474E59AAE130EA86C /* DryWechat-iOS.modulemap */,
-				565DE38E5AE25CC1BA4460851B0EEAE4 /* DryWechat-iOS.xcconfig */,
-				792EDE8C9971436E7DBB8EE7DD0995D4 /* DryWechat-iOS-dummy.m */,
-				881D4B538A09BD841666B75DA4961EBF /* DryWechat-iOS-Info.plist */,
-				29C3AF4E69AC2ED81EF4361B4283C0BE /* DryWechat-iOS-prefix.pch */,
-				E1F4D0E6BCFCB365E70B081135C13B1F /* DryWechat-iOS-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/DryWechat-iOS";
-			sourceTree = "<group>";
-		};
-		36B34B1B871B5CF7030CDF498038A973 /* WechatOpenSDK */ = {
-			isa = PBXGroup;
-			children = (
-				0A6B79438D5B7312D08F5E0CB8D41B8C /* WechatAuthSDK.h */,
-				49FC8620118CBE09DF4A47F2880203E1 /* WXApi.h */,
-				08F4B94DEFCCF5323155166A41E016D2 /* WXApiObject.h */,
-				B29A4C58499C991088052DC15B3730CB /* Frameworks */,
-				A1182C62A95E12616D6F9D0E66B07736 /* Support Files */,
+				98DBD198451196F6AA402E543539EA26 /* WechatAuthSDK.h */,
+				5A1AA5C567A5CA375E87E2477C8E43B7 /* WXApi.h */,
+				6A2C230EFF0F523CC4E31F91DB67959E /* WXApiObject.h */,
+				A7819B1B012525DEC25A9323ECA29419 /* Frameworks */,
+				7ADC7605E65D257EC16D54DC9A0BEABD /* Support Files */,
 			);
 			name = WechatOpenSDK;
 			path = WechatOpenSDK;
@@ -154,40 +166,42 @@
 		52C06D29DE8A74D8B72B83758947D95F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				36B34B1B871B5CF7030CDF498038A973 /* WechatOpenSDK */,
+				4100A123B7DED17A6C7B92332926C547 /* WechatOpenSDK */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		7789E51791BE5B31FC69536F0F9B9CD7 /* DryWechat-iOS */ = {
+		7ADC7605E65D257EC16D54DC9A0BEABD /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				E4E356945A4E963CF2E02CFA65D2F2B8 /* DryWechat.h */,
-				8C666A4278CBDB550F5FC07350F8E7E6 /* DryWechat.m */,
-				A176C3B26CEECCB632250C8193489AD3 /* DryWechatMedia.h */,
-				5ECB52000E40099FEF5421A6813991BF /* DryWechatMedia.m */,
-				F8AEF477678AE7C46125BBB560F39D84 /* Pod */,
-				300FD981AC6E8BFDC7AF9905A13C392A /* Support Files */,
-			);
-			name = "DryWechat-iOS";
-			path = ../..;
-			sourceTree = "<group>";
-		};
-		A1182C62A95E12616D6F9D0E66B07736 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				3220B55459886A97342DE0AFE6F15022 /* WechatOpenSDK.xcconfig */,
+				37075775D547B874786834FF0A1FF2C0 /* WechatOpenSDK.debug.xcconfig */,
+				1D075B6C89631B71325F90C9AFF90CC7 /* WechatOpenSDK.release.xcconfig */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/WechatOpenSDK";
 			sourceTree = "<group>";
 		};
-		B29A4C58499C991088052DC15B3730CB /* Frameworks */ = {
+		A7819B1B012525DEC25A9323ECA29419 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				20C276B89EB49C2EEE542C6023939DCE /* libWeChatSDK.a */,
+				55D5CDF541E1D6589B54A9C3F985731F /* libWeChatSDK.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B5248F0BB4C28E28C46E14E690973E77 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				FC221400EA043AAF9BA2E632BE8ECC7B /* DryWechat-iOS.modulemap */,
+				64DAA5397E7EA83E3C85F55DCB771ED4 /* DryWechat-iOS-dummy.m */,
+				F1165707FBD41A543EA1FD06FE0A961F /* DryWechat-iOS-Info.plist */,
+				86678EB0516B5C8DCAEC408836D8A7C6 /* DryWechat-iOS-prefix.pch */,
+				F925B1B82202DD152E22EE444EC08835 /* DryWechat-iOS-umbrella.h */,
+				25F606B178353EBAD42D66F75DAE29FA /* DryWechat-iOS.debug.xcconfig */,
+				AC6424C0825B77F29D52B033009A441E /* DryWechat-iOS.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/DryWechat-iOS";
 			sourceTree = "<group>";
 		};
 		C0834CEBB1379A84116EF29F93051C60 /* iOS */ = {
@@ -241,16 +255,6 @@
 				3E15DD1624721C6A2888E02B9A47C5E3 /* Pods_DryWechat_iOS_Example.framework */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		F8AEF477678AE7C46125BBB560F39D84 /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				8B1870AB22DE3F30820C110EB39187D2 /* DryWechat-iOS.podspec */,
-				E4BE35BF428243E43A1CEC06817CDE5F /* LICENSE */,
-				84B53D31CFEF20B7DF178DA12113FFE2 /* README.md */,
-			);
-			name = Pod;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -331,6 +335,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
 			productRefGroup = DB9D81E3A27C21BB67AC62E08B0F3125 /* Products */;
@@ -404,18 +409,39 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		0D99CEC70151D7D42ED707EB8F198EF2 /* Debug */ = {
+		0F487084A6E6BA49533CDFDC033DEC3D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3220B55459886A97342DE0AFE6F15022 /* WechatOpenSDK.xcconfig */;
+			baseConfigurationReference = AC6424C0825B77F29D52B033009A441E /* DryWechat-iOS.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/DryWechat-iOS/DryWechat-iOS-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/DryWechat-iOS/DryWechat-iOS-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/DryWechat-iOS/DryWechat-iOS.modulemap";
+				PRODUCT_MODULE_NAME = DryWechat_iOS;
+				PRODUCT_NAME = DryWechat_iOS;
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
 		196DFA3E4A09A28224918543529A1885 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -516,9 +542,9 @@
 			};
 			name = Release;
 		};
-		5FF744F07E7996DAA957D48C2E32255C /* Debug */ = {
+		595844E1AADBFC83846B8AD285B76AF3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 565DE38E5AE25CC1BA4460851B0EEAE4 /* DryWechat-iOS.xcconfig */;
+			baseConfigurationReference = 25F606B178353EBAD42D66F75DAE29FA /* DryWechat-iOS.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
@@ -548,20 +574,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
-		};
-		85051B0B87E6BCE7F911D91842FCD995 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3220B55459886A97342DE0AFE6F15022 /* WechatOpenSDK.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
 		};
 		B01D14FDC83DCF9D4BE53066BEA96D05 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -623,37 +635,17 @@
 			};
 			name = Release;
 		};
-		C7EF8073305A78AC1BE7330A43EB1E94 /* Release */ = {
+		DC30F8FC0171F9E7813BB130EDF9F3A8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 565DE38E5AE25CC1BA4460851B0EEAE4 /* DryWechat-iOS.xcconfig */;
+			baseConfigurationReference = 1D075B6C89631B71325F90C9AFF90CC7 /* WechatOpenSDK.release.xcconfig */;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/DryWechat-iOS/DryWechat-iOS-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/DryWechat-iOS/DryWechat-iOS-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/DryWechat-iOS/DryWechat-iOS.modulemap";
-				PRODUCT_MODULE_NAME = DryWechat_iOS;
-				PRODUCT_NAME = DryWechat_iOS;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -691,6 +683,19 @@
 			};
 			name = Debug;
 		};
+		F8C120874D5427191AED7CA476806258 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 37075775D547B874786834FF0A1FF2C0 /* WechatOpenSDK.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -706,8 +711,8 @@
 		4973391D0A512F3571F868AC8011985E /* Build configuration list for PBXNativeTarget "DryWechat-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5FF744F07E7996DAA957D48C2E32255C /* Debug */,
-				C7EF8073305A78AC1BE7330A43EB1E94 /* Release */,
+				595844E1AADBFC83846B8AD285B76AF3 /* Debug */,
+				0F487084A6E6BA49533CDFDC033DEC3D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -715,8 +720,8 @@
 		87FB1E4533EA2086BB8562D0E30A8E40 /* Build configuration list for PBXAggregateTarget "WechatOpenSDK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0D99CEC70151D7D42ED707EB8F198EF2 /* Debug */,
-				85051B0B87E6BCE7F911D91842FCD995 /* Release */,
+				F8C120874D5427191AED7CA476806258 /* Debug */,
+				DC30F8FC0171F9E7813BB130EDF9F3A8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
